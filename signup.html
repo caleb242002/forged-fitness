@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FORGED — Start Your Free Trial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #080808;
+      --surface: #111111;
+      --surface2: #181818;
+      --lime: #c8f000;
+      --white: #f0f0f0;
+      --muted: #666;
+      --border: rgba(255,255,255,0.06);
+      --error: #ff4d4d;
+      --success: #c8f000;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* NAV */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--lime); }
+
+    .nav-back {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--lime); }
+
+    /* LAYOUT */
+    .page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 72px);
+    }
+
+    /* LEFT PANEL */
+    .left-panel {
+      background: var(--surface);
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .left-panel::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,240,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,240,0,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .left-panel::after {
+      content: 'FORGED';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18vw;
+      color: rgba(255,255,255,0.015);
+      bottom: -2rem; left: -1rem;
+      letter-spacing: 0.02em;
+      pointer-events: none;
+      line-height: 1;
+    }
+
+    .panel-content { position: relative; z-index: 1; }
+
+    .panel-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .panel-eyebrow::before {
+      content: '';
+      width: 30px; height: 1px;
+      background: var(--lime);
+      display: inline-block;
+    }
+
+    .panel-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .panel-title .accent { color: var(--lime); }
+
+    .panel-desc {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 380px;
+      margin-bottom: 3rem;
+    }
+
+    /* Perks list */
+    .perks { display: flex; flex-direction: column; gap: 1rem; }
+    .perk {
+      display: flex; align-items: flex-start; gap: 1rem;
+    }
+    .perk-icon {
+      width: 32px; height: 32px; flex-shrink: 0;
+      background: rgba(200,240,0,0.08);
+      border: 1px solid rgba(200,240,0,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      margin-top: 2px;
+    }
+    .perk-text strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .perk-text span {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Trial badge */
+    .trial-badge {
+      margin-top: 3rem;
+      display: inline-flex; align-items: center; gap: 1rem;
+      background: rgba(200,240,0,0.06);
+      border: 1px solid rgba(200,240,0,0.2);
+      padding: 1rem 1.5rem;
+    }
+    .badge-icon { font-size: 1.5rem; }
+    .badge-text strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--lime);
+    }
+    .badge-text span { font-size: 0.8rem; color: var(--muted); }
+
+    /* RIGHT PANEL — FORM */
+    .right-panel {
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Step indicator */
+    .steps {
+      display: flex; align-items: center; gap: 0;
+      margin-bottom: 3rem;
+    }
+    .step {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    .step.active { color: var(--white); }
+    .step.done { color: var(--lime); }
+
+    .step-num {
+      width: 26px; height: 26px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+    .step.active .step-num {
+      background: var(--lime);
+      color: var(--black);
+      border-color: var(--lime);
+    }
+    .step.done .step-num {
+      background: transparent;
+      color: var(--lime);
+      border-color: var(--lime);
+    }
+
+    .step-line {
+      flex: 1; height: 1px;
+      background: var(--border);
+      margin: 0 0.8rem;
+      max-width: 40px;
+      transition: background 0.3s;
+    }
+    .step-line.done { background: var(--lime); }
+
+    /* Form panels */
+    .form-step { display: none; }
+    .form-step.active { display: block; animation: stepIn 0.4s ease; }
+
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .form-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    /* Form fields */
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .field { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.2rem; }
+
+    .field label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .field label .required { color: var(--lime); }
+
+    .field input,
+    .field select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+      appearance: none;
+    }
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      cursor: pointer;
+    }
+    .field input::placeholder { color: rgba(255,255,255,0.2); }
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--lime);
+      box-shadow: 0 0 0 3px rgba(200,240,0,0.06);
+    }
+    .field input.error { border-color: var(--error); }
+
+    .field-error {
+      font-size: 0.72rem;
+      color: var(--error);
+      display: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.06em;
+    }
+    .field-error.visible { display: block; }
+
+    /* Password strength */
+    .password-wrap { position: relative; }
+    .toggle-pw {
+      position: absolute; right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      background: none; border: none;
+      color: var(--muted); cursor: pointer;
+      font-size: 0.8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .toggle-pw:hover { color: var(--lime); }
+
+    .pw-strength { margin-top: 0.5rem; display: none; }
+    .pw-strength.visible { display: block; }
+    .pw-bars { display: flex; gap: 4px; margin-bottom: 0.3rem; }
+    .pw-bar {
+      flex: 1; height: 3px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .pw-bar.weak { background: var(--error); }
+    .pw-bar.fair { background: var(--gold, #f0a500); }
+    .pw-bar.strong { background: var(--lime); }
+    .pw-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Program cards (step 2) */
+    .program-options { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.5rem; }
+    .program-option {
+      border: 1px solid var(--border);
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 1.2rem;
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+    }
+    .program-option:hover { border-color: rgba(200,240,0,0.3); background: rgba(200,240,0,0.02); }
+    .program-option.selected {
+      border-color: var(--lime);
+      background: rgba(200,240,0,0.05);
+    }
+    .program-option input[type="radio"] { display: none; }
+    .option-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .option-text strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .option-text span { font-size: 0.82rem; color: var(--muted); }
+    .option-check {
+      position: absolute; right: 1.2rem; top: 50%;
+      transform: translateY(-50%);
+      width: 20px; height: 20px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      color: var(--lime);
+      transition: all 0.2s;
+    }
+    .program-option.selected .option-check {
+      background: var(--lime);
+      color: var(--black);
+      border-color: var(--lime);
+      font-weight: 900;
+    }
+
+    /* Goal options */
+    .goal-options { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem; }
+    .goal-option {
+      border: 1px solid var(--border);
+      padding: 1.2rem;
+      cursor: pointer;
+      text-align: center;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .goal-option:hover { border-color: rgba(200,240,0,0.3); }
+    .goal-option.selected { border-color: var(--lime); background: rgba(200,240,0,0.05); }
+    .goal-option input[type="radio"] { display: none; }
+    .goal-icon { font-size: 1.5rem; display: block; margin-bottom: 0.5rem; }
+    .goal-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    /* Checkbox */
+    .checkbox-field {
+      display: flex; align-items: flex-start; gap: 0.8rem;
+      margin-bottom: 1.5rem; cursor: pointer;
+    }
+    .checkbox-field input { display: none; }
+    .custom-checkbox {
+      width: 18px; height: 18px; flex-shrink: 0;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+      transition: all 0.2s;
+      font-size: 0.65rem;
+      color: var(--black);
+    }
+    .checkbox-field input:checked + .custom-checkbox {
+      background: var(--lime);
+      border-color: var(--lime);
+    }
+    .checkbox-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .checkbox-text a { color: var(--lime); text-decoration: none; }
+    .checkbox-text a:hover { text-decoration: underline; }
+
+    /* Buttons */
+    .form-actions { display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem; }
+
+    .btn-lime {
+      background: var(--lime);
+      color: var(--black);
+      padding: 1rem 2.2rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 0 100%);
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .btn-lime:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(200,240,0,0.2);
+    }
+    .btn-lime:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .btn-back {
+      background: transparent;
+      color: var(--muted);
+      padding: 1rem 1.5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-back:hover { border-color: var(--muted); color: var(--white); }
+
+    /* Divider */
+    .divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .divider span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .social-signup { display: flex; gap: 0.8rem; }
+    .social-btn {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-btn:hover { border-color: var(--lime); color: var(--white); }
+
+    .signin-link {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .signin-link a { color: var(--lime); text-decoration: none; font-weight: 500; }
+    .signin-link a:hover { text-decoration: underline; }
+
+    /* SUCCESS SCREEN */
+    .success-screen {
+      display: none;
+      text-align: center;
+      animation: stepIn 0.5s ease;
+    }
+    .success-screen.active { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px; }
+
+    .success-icon {
+      width: 80px; height: 80px;
+      background: rgba(200,240,0,0.1);
+      border: 2px solid var(--lime);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 2rem;
+      animation: popIn 0.5s 0.2s ease both;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .success-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      letter-spacing: 0.04em;
+      color: var(--lime);
+      margin-bottom: 0.8rem;
+    }
+    .success-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 360px;
+      margin: 0 auto 2.5rem;
+    }
+    .success-name {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .success-details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      text-align: left;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto 2rem;
+    }
+    .success-detail {
+      display: flex; justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .success-detail:last-child { border-bottom: none; }
+    .success-detail .label { color: var(--muted); }
+    .success-detail .value {
+      color: var(--lime);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; }
+      .left-panel { display: none; }
+      .right-panel { padding: 3rem 2rem; }
+      nav { padding: 1.2rem 2rem; }
+      .field-row { grid-template-columns: 1fr; }
+      .goal-options { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="fitness-landing.html" class="nav-logo">FORG<span>E</span>D</a>
+    <a href="fitness-landing.html" class="nav-back">← Back to Home</a>
+  </nav>
+
+  <div class="page">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+      <div class="panel-content">
+        <p class="panel-eyebrow">7-Day Free Trial</p>
+        <h2 class="panel-title">Start Your<br><span class="accent">Journey</span><br>Today</h2>
+        <p class="panel-desc">Join 50,000+ members already training with FORGED. No credit card required. Cancel anytime.</p>
+
+        <div class="perks">
+          <div class="perk">
+            <div class="perk-icon">🔥</div>
+            <div class="perk-text">
+              <strong>Full Program Access</strong>
+              <span>Unlock all 200+ workouts from day one.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">🥗</div>
+            <div class="perk-text">
+              <strong>Nutrition Coaching</strong>
+              <span>Personalised meal plans to fuel your training.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">👥</div>
+            <div class="perk-text">
+              <strong>Community Access</strong>
+              <span>Connect with a global community of athletes.</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon">📊</div>
+            <div class="perk-text">
+              <strong>Progress Tracking</strong>
+              <span>Track every rep, set, and milestone.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trial-badge">
+          <span class="badge-icon">🛡️</span>
+          <div class="badge-text">
+            <strong>No Credit Card Needed</strong>
+            <span>Free for 7 days. Cancel anytime, no questions asked.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+      <!-- Step Indicator -->
+      <div class="steps" id="steps">
+        <div class="step active" id="step-ind-1">
+          <div class="step-num">1</div>
+          Account
+        </div>
+        <div class="step-line" id="line-1"></div>
+        <div class="step" id="step-ind-2">
+          <div class="step-num">2</div>
+          Your Goals
+        </div>
+        <div class="step-line" id="line-2"></div>
+        <div class="step" id="step-ind-3">
+          <div class="step-num">3</div>
+          Program
+        </div>
+      </div>
+
+      <!-- STEP 1: Account -->
+      <div class="form-step active" id="step-1">
+        <h2 class="form-title">Create Your Account</h2>
+        <p class="form-subtitle">Start your 7-day free trial. No credit card required.</p>
+
+        <div class="social-signup">
+          <button class="social-btn" onclick="socialSignup('Google')">
+            <span>G</span> Google
+          </button>
+          <button class="social-btn" onclick="socialSignup('Apple')">
+            <span>🍎</span> Apple
+          </button>
+        </div>
+
+        <div class="divider"><span>or sign up with email</span></div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>First Name <span class="required">*</span></label>
+            <input type="text" id="firstName" placeholder="John" />
+            <span class="field-error" id="err-firstName">Please enter your first name.</span>
+          </div>
+          <div class="field">
+            <label>Last Name <span class="required">*</span></label>
+            <input type="text" id="lastName" placeholder="Doe" />
+            <span class="field-error" id="err-lastName">Please enter your last name.</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email Address <span class="required">*</span></label>
+          <input type="email" id="email" placeholder="john@example.com" />
+          <span class="field-error" id="err-email">Please enter a valid email address.</span>
+        </div>
+
+        <div class="field">
+          <label>Password <span class="required">*</span></label>
+          <div class="password-wrap">
+            <input type="password" id="password" placeholder="Min. 8 characters" oninput="checkStrength(this)" />
+            <button class="toggle-pw" type="button" onclick="togglePassword()">Show</button>
+          </div>
+          <div class="pw-strength" id="pw-strength">
+            <div class="pw-bars">
+              <div class="pw-bar" id="bar1"></div>
+              <div class="pw-bar" id="bar2"></div>
+              <div class="pw-bar" id="bar3"></div>
+              <div class="pw-bar" id="bar4"></div>
+            </div>
+            <span class="pw-label" id="pw-label">Weak</span>
+          </div>
+          <span class="field-error" id="err-password">Password must be at least 8 characters.</span>
+        </div>
+
+        <label class="checkbox-field">
+          <input type="checkbox" id="terms" />
+          <div class="custom-checkbox" id="check-terms"></div>
+          <span class="checkbox-text">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </span>
+        </label>
+        <span class="field-error" id="err-terms">You must agree to the terms to continue.</span>
+
+        <div class="form-actions">
+          <button class="btn-lime" onclick="goToStep2()">Continue →</button>
+        </div>
+
+        <p class="signin-link">Already have an account? <a href="#">Sign In</a></p>
+      </div>
+
+      <!-- STEP 2: Goals -->
+      <div class="form-step" id="step-2">
+        <h2 class="form-title">What's Your Goal?</h2>
+        <p class="form-subtitle">We'll match you to the right program and nutrition plan.</p>
+
+        <div class="goal-options" id="goal-options">
+          <label class="goal-option selected" onclick="selectGoal(this)">
+            <input type="radio" name="goal" value="fat-loss" checked />
+            <span class="goal-icon">🔥</span>
+            <span class="goal-label">Lose Fat</span>
+          </label>
+          <label class="goal-option" onclick="selectGoal(this)">
+            <input type="radio" name="goal" value="muscle" />
+            <span class="goal-icon">💪</span>
+            <span class="goal-label">Build Muscle</span>
+          </label>
+          <label class="goal-option" onclick="selectGoal(this)">
+            <input type="radio" name="goal" value="strength" />
+            <span class="goal-icon">🏋️</span>
+            <span class="goal-label">Get Stronger</span>
+          </label>
+          <label class="goal-option" onclick="selectGoal(this)">
+            <input type="radio" name="goal" value="wellness" />
+            <span class="goal-icon">🧘</span>
+            <span class="goal-label">Stay Healthy</span>
+          </label>
+        </div>
+        <span class="field-error" id="err-goal">Please select a goal.</span>
+
+        <div class="field">
+          <label>Experience Level <span class="required">*</span></label>
+          <select id="level">
+            <option value="" disabled selected>Select your level</option>
+            <option value="beginner">Beginner — just starting out</option>
+            <option value="intermediate">Intermediate — been training 1–2 years</option>
+            <option value="advanced">Advanced — serious athlete</option>
+          </select>
+          <span class="field-error" id="err-level">Please select your experience level.</span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Age</label>
+            <input type="number" id="age" placeholder="e.g. 25" min="16" max="80"/>
+          </div>
+          <div class="field">
+            <label>Gender</label>
+            <select id="gender">
+              <option value="" disabled selected>Prefer not to say</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-back" onclick="goToStep(1)">← Back</button>
+          <button class="btn-lime" onclick="goToStep3()">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Program -->
+      <div class="form-step" id="step-3">
+        <h2 class="form-title">Choose Your Program</h2>
+        <p class="form-subtitle">Based on your goals, we recommend starting with <strong style="color:var(--white)">Ignite</strong> — but you can change anytime.</p>
+
+        <div class="program-options" id="program-options">
+          <label class="program-option selected" onclick="selectProgram(this)">
+            <input type="radio" name="program" value="ignite" checked />
+            <span class="option-icon">🔥</span>
+            <div class="option-text">
+              <strong>Ignite — Fat Loss</strong>
+              <span>8 weeks · HIIT & Metabolic Conditioning · All levels</span>
+            </div>
+            <div class="option-check">✓</div>
+          </label>
+          <label class="program-option" onclick="selectProgram(this)">
+            <input type="radio" name="program" value="iron" />
+            <span class="option-icon">💪</span>
+            <div class="option-text">
+              <strong>Iron — Strength</strong>
+              <span>12 weeks · Progressive Overload · Intermediate</span>
+            </div>
+            <div class="option-check">✓</div>
+          </label>
+          <label class="program-option" onclick="selectProgram(this)">
+            <input type="radio" name="program" value="apex" />
+            <span class="option-icon">⚡</span>
+            <div class="option-text">
+              <strong>Apex — Elite</strong>
+              <span>16 weeks · Full-spectrum Training · Advanced</span>
+            </div>
+            <div class="option-check">✓</div>
+          </label>
+        </div>
+        <span class="field-error" id="err-program">Please select a program.</span>
+
+        <label class="checkbox-field">
+          <input type="checkbox" id="newsletter" />
+          <div class="custom-checkbox" id="check-newsletter"></div>
+          <span class="checkbox-text">Send me weekly tips, workouts and nutrition advice.</span>
+        </label>
+
+        <div class="form-actions">
+          <button class="btn-back" onclick="goToStep(2)">← Back</button>
+          <button class="btn-lime" onclick="submitForm()">Start Free Trial 🚀</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-screen" id="success">
+        <div class="success-icon">✓</div>
+        <h2 class="success-title">You're In!</h2>
+        <p class="success-sub">Welcome to FORGED, <span class="success-name" id="success-name"></span>. Your 7-day free trial has started. Check your email to confirm your account.</p>
+        <div class="success-details">
+          <div class="success-detail">
+            <span class="label">Program</span>
+            <span class="value" id="success-program">—</span>
+          </div>
+          <div class="success-detail">
+            <span class="label">Trial Ends</span>
+            <span class="value" id="success-date">—</span>
+          </div>
+          <div class="success-detail">
+            <span class="label">Status</span>
+            <span class="value" style="color:var(--lime)">Active ✓</span>
+          </div>
+        </div>
+        <a href="fitness-landing.html" class="btn-lime" style="text-decoration:none; display:inline-block; margin-top:0.5rem;">Go to Dashboard →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // --- Checkbox toggle visual ---
+    document.querySelectorAll('.checkbox-field input[type="checkbox"]').forEach(input => {
+      input.addEventListener('change', function() {
+        const box = this.nextElementSibling;
+        box.textContent = this.checked ? '✓' : '';
+      });
+    });
+
+    // --- Password visibility ---
+    function togglePassword() {
+      const pw = document.getElementById('password');
+      const btn = document.querySelector('.toggle-pw');
+      if (pw.type === 'password') {
+        pw.type = 'text';
+        btn.textContent = 'Hide';
+      } else {
+        pw.type = 'password';
+        btn.textContent = 'Show';
+      }
+    }
+
+    // --- Password strength ---
+    function checkStrength(input) {
+      const val = input.value;
+      const strengthEl = document.getElementById('pw-strength');
+      const label = document.getElementById('pw-label');
+      const bars = [document.getElementById('bar1'), document.getElementById('bar2'),
+                    document.getElementById('bar3'), document.getElementById('bar4')];
+
+      if (!val) { strengthEl.classList.remove('visible'); return; }
+      strengthEl.classList.add('visible');
+
+      let score = 0;
+      if (val.length >= 8) score++;
+      if (/[A-Z]/.test(val)) score++;
+      if (/[0-9]/.test(val)) score++;
+      if (/[^A-Za-z0-9]/.test(val)) score++;
+
+      bars.forEach((bar, i) => {
+        bar.className = 'pw-bar';
+        if (i < score) {
+          bar.classList.add(score <= 1 ? 'weak' : score <= 2 ? 'fair' : 'strong');
+        }
+      });
+
+      label.textContent = score <= 1 ? 'Weak' : score <= 2 ? 'Fair' : score === 3 ? 'Good' : 'Strong';
+      label.style.color = score <= 1 ? 'var(--error)' : score <= 2 ? '#f0a500' : 'var(--lime)';
+    }
+
+    // --- Goal selection ---
+    function selectGoal(el) {
+      document.querySelectorAll('.goal-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    // --- Program selection ---
+    function selectProgram(el) {
+      document.querySelectorAll('.program-option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    // --- Social signup ---
+    function socialSignup(provider) {
+      alert(`${provider} sign-up would open here in a real app!`);
+    }
+
+    // --- Validation helpers ---
+    function showError(id, show) {
+      const el = document.getElementById('err-' + id);
+      if (el) el.classList.toggle('visible', show);
+      const input = document.getElementById(id);
+      if (input) input.classList.toggle('error', show);
+    }
+
+    function clearErrors() {
+      document.querySelectorAll('.field-error').forEach(e => e.classList.remove('visible'));
+      document.querySelectorAll('input, select').forEach(e => e.classList.remove('error'));
+    }
+
+    // --- Step navigation ---
+    function goToStep(n) {
+      clearErrors();
+      document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+      document.getElementById('step-' + n).classList.add('active');
+
+      // Update step indicators
+      for (let i = 1; i <= 3; i++) {
+        const ind = document.getElementById('step-ind-' + i);
+        ind.className = 'step';
+        if (i < n) ind.classList.add('done');
+        if (i === n) ind.classList.add('active');
+      }
+      for (let i = 1; i <= 2; i++) {
+        const line = document.getElementById('line-' + i);
+        line.className = 'step-line';
+        if (i < n) line.classList.add('done');
+      }
+    }
+
+    // --- Step 1 → Step 2 ---
+    function goToStep2() {
+      clearErrors();
+      let valid = true;
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName = document.getElementById('lastName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const terms = document.getElementById('terms').checked;
+
+      if (!firstName) { showError('firstName', true); valid = false; }
+      if (!lastName) { showError('lastName', true); valid = false; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('email', true); valid = false; }
+      if (password.length < 8) { showError('password', true); valid = false; }
+      if (!terms) { showError('terms', true); valid = false; }
+
+      if (valid) goToStep(2);
+    }
+
+    // --- Step 2 → Step 3 ---
+    function goToStep3() {
+      clearErrors();
+      let valid = true;
+
+      const level = document.getElementById('level').value;
+      if (!level) { showError('level', true); valid = false; }
+
+      if (valid) goToStep(3);
+    }
+
+    // --- Final Submit ---
+    function submitForm() {
+      clearErrors();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const programEl = document.querySelector('.program-option.selected input');
+      const programMap = { ignite: 'Ignite — Fat Loss', iron: 'Iron — Strength', apex: 'Apex — Elite' };
+      const programVal = programEl ? programEl.value : 'ignite';
+
+      // Hide steps indicator and all form steps
+      document.getElementById('steps').style.display = 'none';
+      document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+
+      // Calculate trial end date
+      const trialEnd = new Date();
+      trialEnd.setDate(trialEnd.getDate() + 7);
+      const dateStr = trialEnd.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+      // Populate success screen
+      document.getElementById('success-name').textContent = firstName || 'Athlete';
+      document.getElementById('success-program').textContent = programMap[programVal] || 'Ignite';
+      document.getElementById('success-date').textContent = dateStr;
+
+      // Show success
+      document.getElementById('success').classList.add('active');
+    }
+  </script>
+</body>
+</html>
